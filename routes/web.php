@@ -29,6 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::view('template', 'layouts.bootstrap');
 Route::resource('users', UserController::class);
+
+Route::get('category/trash',[CategoryController::class,'trash'])->name('category.trash');
+Route::get('category/{id}/restore',[CategoryController::class,'restore'])->name('category.restore');
 Route::resource('category',CategoryController::class);
 
 

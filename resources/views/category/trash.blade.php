@@ -1,6 +1,6 @@
 @extends('layouts.bootstrap')
 @section('title')
-    Category Page
+Trashed Category
 @endsection
 
 @section('content')
@@ -8,17 +8,14 @@
         <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3>Category Data</h3>
+                    <h3>Trashed Category</h3>
                 </div>
                 <div class="card-body table-responsive">
-                    @include('alert.success')
-
-                    <a class="btn btn-primary" href="{{ route('category.create') }}">Create</a>
-                    <hr>
+                    
                     <div class="row">
                         <div class="col-3">
-                            <a class="btn bg-gradient-primary" href="{{ route('category.index') }}">Published</a>
-                            <a class="btn btn-outline-primary" href="{{ route('category.trash') }}">Trash</a>
+                            <a class="btn btn-outline-primary" href="{{ route('category.index') }}">Published</a>
+                            <a class="btn bg-gradient-primary" href="{{ route('category.trash') }}">Trash</a>
                         </div>
                     </div>
                     <hr>
@@ -40,14 +37,7 @@
                                     <td><img class="img-thumbnail" src="{{ asset('uploads/' . $row->thumbnail) }}"
                                             width="150px"></td>
                                     <td>
-                                            <a href="{{ route('category.edit', [$row->id]) }}"
-                                            class="btn btn-info btn-sm">Edit</a>
-
-                                            <form class="d-inline" action="{{ route('category.destroy',[$row->id]) }}" method="POST" onsubmit="return confirm('Move Category To Trash ?')">
-                                            @csrf
-                                            {{  method_field('DELETE') }}
-                                            <input type="submit" class="btn btn-danger btn-sm" value="Trash">
-                                            </form>
+                                           <a href="{{ route('category.restore',[$row->id]) }}" class="btn btn-success btn-sm">Restore</a>
                                     </td>
                                 </tr>
                             @endforeach

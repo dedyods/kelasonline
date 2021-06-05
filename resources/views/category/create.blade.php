@@ -21,8 +21,8 @@ Create Category
                     <span class="error invalid-feedback">{{$errors->first('name')}}</span>
                   </div>
                   <div class="form-group">
-                    <label for="thumbnail">thumbnail address</label>
-                    <input type="file" class="form-control {{$errors->first('thumbnail') ? 'is-invalid' : ''}}" thumbnail="thumbnail" id="thumbnail" placeholder="Enter thumbnail" value="{{ old('thumbnail') }}">
+                    <label for="thumbnail">Thumbnail</label>
+                    <input type="file" class="form-control {{$errors->first('thumbnail') ? 'is-invalid' : ''}}" name="thumbnail" id="thumbnail" placeholder="Enter thumbnail" value="{{ old('thumbnail') }}">
                     <span class="error invalid-feedback">{{$errors->first('thumbnail')}}</span>
                   </div>
                 </div>
