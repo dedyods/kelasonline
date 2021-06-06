@@ -13,14 +13,36 @@
                 <div class="card-body table-responsive">
                     @include('alert.success')
 
+                    @if(Request::get('keyword'))
+                    <a class="btn btn-primary" href="{{ route('category.index') }}">Back</a>
+
+                    @else
                     <a class="btn btn-primary" href="{{ route('category.create') }}">Create</a>
+                    @endif
+
+
                     <hr>
+                    <form action="{{ route('category.index') }}" method="get">
+                    
                     <div class="row">
+                        <div class="col-2">
+                            <b>Search Name</b>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" value="{{ Request::get('keyword') }}" id="keyword" name="keyword">
+                        </div>
+
+                        <div class="col-1">
+                            <div type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
                         <div class="col-3">
                             <a class="btn bg-gradient-primary" href="{{ route('category.index') }}">Published</a>
                             <a class="btn btn-outline-primary" href="{{ route('category.trash') }}">Trash</a>
                         </div>
                     </div>
+                    </form>
                     <hr>
                     <table class="table table-bordered">
                         <thead>
@@ -55,6 +77,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
+                    {{ $category->appends(Request::all())->links() }}
                 </div>
             </div>
         </div>

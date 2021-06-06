@@ -16,9 +16,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\pResponse
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filterKeyword = $request->get('keyword');
         $data['category']   = Category::paginate(5);
+        if($filterKeyword)
+        {
+            $data['category'] = Category::where('name', 'LIKE',"%$filterKeyword%")->paginate(5);
+            
+        }
         return view('category.index',$data);
 
     }
@@ -167,5 +173,19 @@ class CategoryController extends Controller
         }
 
         return redirect()->route('category.index')->with('status','Category SuccessFully Restore');
+    }
+
+    public function deletePermanent($id)
+    {
+        $category   = Category::withTrashed()->findOrFail($id);
+        if(!$category->trashed())
+        {
+            return redirect()->route('category.index')->with('status','Can Not Delete Permanent Category');
+        }
+        else{
+            $category->forceDelete();
+            Storage::disk('upload')->delete($category->thumbnail);
+            return redirect()->route('category.index')->with('status', 'Category Permanently Delete');
+        }
     }
 }

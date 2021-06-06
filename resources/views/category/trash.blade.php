@@ -38,6 +38,12 @@ Trashed Category
                                             width="150px"></td>
                                     <td>
                                            <a href="{{ route('category.restore',[$row->id]) }}" class="btn btn-success btn-sm">Restore</a>
+
+                                           <form class="d-inline" action="{{ route('category.delete-permanent',[$row->id]) }}" method="post" onsubmit="return confirm('Delete This Category Permanent ?')">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StudentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,9 @@ Route::resource('users', UserController::class);
 
 Route::get('category/trash',[CategoryController::class,'trash'])->name('category.trash');
 Route::get('category/{id}/restore',[CategoryController::class,'restore'])->name('category.restore');
+Route::delete('category/{category}/delete-permanent', [CategoryController::class,'deletePermanent'])->name('category.delete-permanent');
 Route::resource('category',CategoryController::class);
+Route::resource('student',StudentController::class);
+
 
 
