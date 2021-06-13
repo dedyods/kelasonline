@@ -36,6 +36,7 @@ Route::get('category/trash',[CategoryController::class,'trash'])->name('category
 Route::get('category/{id}/restore',[CategoryController::class,'restore'])->name('category.restore');
 Route::delete('category/{category}/delete-permanent', [CategoryController::class,'deletePermanent'])->name('category.delete-permanent');
 Route::resource('category',CategoryController::class);
+Route::post('student/{student}/reset-password',[StudentController::class,'resetPassword'])->name('student.reset-password');
 Route::resource('student',StudentController::class);
 
 
